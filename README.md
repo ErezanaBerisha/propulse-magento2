@@ -15,7 +15,7 @@ StatHubs reads orders and store configuration through the standard Magento REST 
 
 | | |
 |---|---|
-| Tested on | Mage-OS 3.6.0 (`magento/framework` 103.0.9), PHP 8.3 |
+| Tested on | Mage-OS 3.6.0 (`magento/framework` 103.0.9), PHP 8.3, with two-factor authentication enabled, disabled and removed |
 | Declared requirement | Magento Open Source / Adobe Commerce 2.4.4 or later (`magento/framework` ^103.0.4), PHP 8.1 or later |
 | Not supported | Magento 1, Magento 2.3 and earlier, Magento 2.4.0â€“2.4.3 |
 
@@ -23,59 +23,41 @@ Versions between 2.4.4 and the tested version should work, based on the module's
 
 ## Requirements
 
-- Shell (SSH) access to the server and permission to run `bin/magento` and `composer`.
+- Shell (SSH) access to the server. If you don't have it, send this page to your developer or hosting provider.
 - The shop must be reachable over **HTTPS** from the internet. The StatHubs servers call the shop's REST API at `https://<your-shop>/rest/...`.
 - The Magento REST API must not be blocked by a firewall, WAF or basic-auth protection for the StatHubs servers.
 
-## Download
-
-Download `stathubs-magento2.zip` from the [Releases](../../releases) page of this repository.
-
 ## Installation
 
-> Magento 2.4 cannot install extensions from a ZIP uploaded in the admin panel. Adobe removed the Web Setup Wizard in 2.4.0. Installation needs the command line. If you don't have shell access, ask your hosting provider or agency to do these steps.
-
-Back up your database and code first, as you would before any extension install. Run all commands from the Magento root directory, as the user that owns the Magento files. Do not run them as `root`.
-
-Choose **one** of the two methods.
-
-### Method A: Composer (recommended)
-
-The module is installed like any Composer package and can be updated with `composer update`.
+Run these commands in the Magento root directory, as the user that owns the Magento files (not as `root`):
 
 ```sh
-mkdir -p artifacts
-cp /path/to/stathubs-magento2.zip artifacts/
-composer config repositories.stathubs artifact ./artifacts
-composer require solu1/module-stathubs:^1.0
-```
-
-Then continue with [Activate the module](#activate-the-module).
-
-### Method B: Copy into `app/code`
-
-```sh
-mkdir -p app/code/Solu1/StatHubs
-unzip /path/to/stathubs-magento2.zip -d app/code/Solu1/StatHubs
-```
-
-Check that `app/code/Solu1/StatHubs/registration.php` exists. If it doesn't, the files were extracted into the wrong folder.
-
-### Activate the module
-
-```sh
-bin/magento maintenance:enable
+composer require solu1/module-stathubs
 bin/magento module:enable Solu1_StatHubs
 bin/magento setup:upgrade
 bin/magento setup:di:compile
 bin/magento setup:static-content:deploy -f
 bin/magento cache:flush
-bin/magento maintenance:disable
 ```
 
-`setup:di:compile` and `setup:static-content:deploy` are only needed in production mode. In developer or default mode you can skip them. Check the mode with `bin/magento deploy:mode:show`. If your shop uses more locales, pass them to `setup:static-content:deploy`, for example `-f en_US de_DE`.
+That's it. Continue with [Connect the shop to StatHubs](#connect-the-shop-to-stathubs).
 
-`setup:upgrade` creates the StatHubs API user and its role.
+- `setup:di:compile` and `setup:static-content:deploy` are only needed in production mode (check with `bin/magento deploy:mode:show`). If your shop uses more locales, list them, for example `setup:static-content:deploy -f en_US de_DE`.
+- On a live shop, you can wrap the commands in `bin/magento maintenance:enable` and `bin/magento maintenance:disable`.
+- Magento 2.4 cannot install extensions from a ZIP uploaded in the admin panel. Adobe removed the Web Setup Wizard in 2.4.0.
+
+### Without Composer (ZIP)
+
+1. Download `stathubs-magento2.zip` from the [Releases](../../releases) page.
+2. Extract it into `app/code/Solu1/StatHubs`:
+
+   ```sh
+   mkdir -p app/code/Solu1/StatHubs
+   unzip stathubs-magento2.zip -d app/code/Solu1/StatHubs
+   ```
+
+   `app/code/Solu1/StatHubs/registration.php` must exist afterwards.
+3. Run the commands above, starting with `bin/magento module:enable`. Skip `composer require`.
 
 ## Connect the shop to StatHubs
 
@@ -125,42 +107,32 @@ If your tables use a prefix, add it to `core_config_data`. Then open **System â†
 
 ## Update
 
-Download the new ZIP from the Releases page first.
-
-**Method A (Composer):** replace the ZIP in `artifacts/` with the new one, then:
+**Installed with Composer:**
 
 ```sh
 composer update solu1/module-stathubs
+bin/magento setup:upgrade
+bin/magento setup:di:compile
+bin/magento setup:static-content:deploy -f
+bin/magento cache:flush
 ```
 
-**Method B (`app/code`):** replace the folder contents:
+**Installed from the ZIP:** download the new ZIP, replace the contents of `app/code/Solu1/StatHubs` with it, then run the same `bin/magento` commands.
 
-```sh
-rm -rf app/code/Solu1/StatHubs
-mkdir -p app/code/Solu1/StatHubs
-unzip /path/to/stathubs-magento2.zip -d app/code/Solu1/StatHubs
-```
-
-Then run the commands from [Activate the module](#activate-the-module) again. Your existing StatHubs credentials are kept.
+Your existing StatHubs credentials are kept.
 
 ## Uninstall
 
-### Installed with Composer (Method A)
+**Installed with Composer:**
 
 ```sh
 bin/magento module:uninstall Solu1_StatHubs
 bin/magento cache:flush
 ```
 
-This removes the code, the StatHubs user, its role and the stored credentials. Then remove the artifact repository if you no longer need it:
+This removes the code, the StatHubs user, its role and the stored credentials.
 
-```sh
-composer config --unset repositories.stathubs
-```
-
-### Installed in `app/code` (Method B)
-
-`bin/magento module:uninstall` only works for modules installed with Composer. For `app/code` installs:
+**Installed from the ZIP:** `bin/magento module:uninstall` only works for Composer installs. Instead run:
 
 ```sh
 bin/magento module:disable Solu1_StatHubs
