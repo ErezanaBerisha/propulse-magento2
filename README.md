@@ -32,7 +32,7 @@ Versions between 2.4.4 and the tested version should work, based on the module's
 Run these commands in the Magento root directory, as the user that owns the Magento files (not as `root`):
 
 ```sh
-composer require solu1/module-stathubs
+composer require stathubs/magento2
 bin/magento module:enable Solu1_StatHubs
 bin/magento setup:upgrade
 bin/magento setup:di:compile
@@ -110,7 +110,7 @@ If your tables use a prefix, add it to `core_config_data`. Then open **System â†
 **Installed with Composer:**
 
 ```sh
-composer update solu1/module-stathubs
+composer update stathubs/magento2
 bin/magento setup:upgrade
 bin/magento setup:di:compile
 bin/magento setup:static-content:deploy -f

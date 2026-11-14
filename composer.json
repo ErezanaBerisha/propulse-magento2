@@ -1,9 +1,9 @@
 {
-    "name": "solu1/module-stathubs",
+    "name": "stathubs/magento2",
     "description": "Creates a StatHubs API user for Magento and shows the shop URL, username, password and a QR code.",
     "type": "magento2-module",
     "license": "GPL-3.0-or-later",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "authors": [
         {
             "name": "Profihost GmbH",
