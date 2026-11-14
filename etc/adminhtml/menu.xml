@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Solu1_StatHubs::credentials"
+             title="StatHubs"
+             module="Solu1_StatHubs"
+             sortOrder="90"
+             parent="Magento_Backend::system"
+             action="stathubs/credentials/index"
+             resource="Solu1_StatHubs::credentials"/>
+    </menu>
+</config>

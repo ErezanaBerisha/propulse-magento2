@@ -1,0 +1,34 @@
+{
+    "name": "solu1/module-stathubs",
+    "description": "Creates a StatHubs API user for Magento and shows the shop URL, username, password and a QR code.",
+    "type": "magento2-module",
+    "license": "GPL-3.0-or-later",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Profihost GmbH",
+            "homepage": "https://stathubs.com/"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "magento/framework": "^103.0.4",
+        "magento/module-authorization": "*",
+        "magento/module-backend": "*",
+        "magento/module-integration": "*",
+        "magento/module-sales": "*",
+        "magento/module-store": "*",
+        "magento/module-user": "*"
+    },
+    "suggest": {
+        "magento/module-two-factor-auth": "When enabled, the StatHubs API user still gets a REST token; other admins keep two-factor authentication."
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Solu1\\StatHubs\\": ""
+        }
+    }
+}
