@@ -29,13 +29,7 @@ Versions between 2.4.4 and the tested version should work, based on the module's
 
 ## Download
 
-Download `stathubs-magento2.zip` from the [Releases](../../releases) page of this repository. Each release also includes a `.sha256` checksum file.
-
-Check the download (optional):
-
-```sh
-shasum -a 256 -c stathubs-magento2.zip.sha256
-```
+Download `stathubs-magento2.zip` from the [Releases](../../releases) page of this repository.
 
 ## Installation
 

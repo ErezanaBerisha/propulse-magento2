@@ -36,7 +36,6 @@ jobs:
         run: |
           gh release create "$GITHUB_REF_NAME" \
             dist/stathubs-magento2.zip \
-            dist/stathubs-magento2.zip.sha256 \
             --draft \
             --title "StatHubs for Magento 2 ${GITHUB_REF_NAME}" \
             --notes-file ".github/release-notes/$GITHUB_REF_NAME.md"
