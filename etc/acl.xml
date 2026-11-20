@@ -4,7 +4,7 @@
         <resources>
             <resource id="Magento_Backend::admin">
                 <resource id="Magento_Backend::system">
-                    <resource id="Solu1_StatHubs::credentials" title="StatHubs" sortOrder="90"/>
+                    <resource id="Solu1_ProPulse::credentials" title="proPulse" sortOrder="90"/>
                 </resource>
             </resource>
         </resources>

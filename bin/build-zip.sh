@@ -2,7 +2,7 @@
 set -eu
 
 ref="${1:-HEAD}"
-name="stathubs-magento2"
+name="propulse-magento2"
 
 cd "$(dirname "$0")/.."
 mkdir -p dist

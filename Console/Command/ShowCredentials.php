@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Solu1\StatHubs\Console\Command;
+namespace Solu1\ProPulse\Console\Command;
 
 use Magento\Framework\Console\Cli;
-use Solu1\StatHubs\Model\CredentialProvisioner;
+use Solu1\ProPulse\Model\CredentialProvisioner;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -20,15 +20,15 @@ class ShowCredentials extends Command
 
     protected function configure(): void
     {
-        $this->setName('stathubs:credentials');
-        $this->setDescription('Print the StatHubs shop URL, username and password.');
+        $this->setName('propulse:credentials');
+        $this->setDescription('Print the proPulse shop URL, username and password.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $credentials = $this->provisioner->credentials();
         if ($credentials['username'] === '' || $credentials['password'] === '') {
-            $output->writeln('<error>Could not create the StatHubs API user.</error>');
+            $output->writeln('<error>Could not create the proPulse API user.</error>');
 
             return Cli::RETURN_FAILURE;
         }

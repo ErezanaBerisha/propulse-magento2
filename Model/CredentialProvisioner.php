@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Solu1\StatHubs\Model;
+namespace Solu1\ProPulse\Model;
 
 use Magento\Authorization\Model\RoleFactory;
 use Magento\Authorization\Model\RulesFactory;
@@ -17,14 +17,14 @@ use Magento\Store\Model\StoreManagerInterface;
 use Magento\User\Model\UserFactory;
 
 /**
- * Creates the Magento admin user StatHubs uses to read orders.
+ * Creates the Magento admin user proPulse uses to read orders.
  */
 class CredentialProvisioner
 {
-    public const XML_USERNAME = 'solu1_stathubs/credentials/username';
-    public const XML_PASSWORD = 'solu1_stathubs/credentials/password';
-    public const XML_USER_ID = 'solu1_stathubs/credentials/user_id';
-    public const XML_ROLE_ID = 'solu1_stathubs/credentials/role_id';
+    public const XML_USERNAME = 'solu1_propulse/credentials/username';
+    public const XML_PASSWORD = 'solu1_propulse/credentials/password';
+    public const XML_USER_ID = 'solu1_propulse/credentials/user_id';
+    public const XML_ROLE_ID = 'solu1_propulse/credentials/role_id';
     public const PLATFORM_TYPE = '4';
 
     /**
@@ -199,7 +199,7 @@ class CredentialProvisioner
 
         $user = $this->userFactory->create();
         $user->setUsername($username);
-        $user->setFirstname('StatHubs');
+        $user->setFirstname('proPulse');
         $user->setLastname('API');
         $user->setEmail($this->availableEmail());
         $user->setPassword($password);
@@ -213,41 +213,41 @@ class CredentialProvisioner
 
     private function availableUsername(): string
     {
-        foreach (['stathubs', 'stathubs-api'] as $username) {
+        foreach (['propulse', 'propulse-api'] as $username) {
             $user = $this->userFactory->create()->loadByUsername($username);
             if (!$user->getId()) {
                 return $username;
             }
         }
 
-        return 'stathubs-' . substr(bin2hex(random_bytes(3)), 0, 6);
+        return 'propulse-' . substr(bin2hex(random_bytes(3)), 0, 6);
     }
 
     private function availableRoleName(): string
     {
-        foreach (['StatHubs', 'StatHubs API'] as $name) {
+        foreach (['proPulse', 'proPulse API'] as $name) {
             $role = $this->roleFactory->create()->load($name, 'role_name');
             if (!$role->getId()) {
                 return $name;
             }
         }
 
-        return 'StatHubs ' . substr(bin2hex(random_bytes(2)), 0, 4);
+        return 'proPulse ' . substr(bin2hex(random_bytes(2)), 0, 4);
     }
 
     private function availableEmail(): string
     {
         $host = parse_url($this->shopUrl(), PHP_URL_HOST);
         if (!is_string($host) || !str_contains($host, '.')) {
-            $host = 'stathubs.local';
+            $host = 'propulse.local';
         }
 
-        return 'stathubs-api@' . $host;
+        return 'propulse-api@' . $host;
     }
 
     private function generatePassword(): string
     {
-        return 'Sh!' . bin2hex(random_bytes(12));
+        return 'Pp!' . bin2hex(random_bytes(12));
     }
 
     private function readPassword(): string

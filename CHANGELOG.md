@@ -2,6 +2,13 @@
 
 All notable changes to this module are documented here. The project follows [Semantic Versioning](https://semver.org/).
 
+## [2.0.0] - 2026-11-20
+
+### Changed
+- Renamed from StatHubs to proPulse: Composer package `propulse/magento2`, module `Solu1_ProPulse`, namespace `Solu1\ProPulse`, admin page **System → proPulse**, command `bin/magento propulse:credentials`.
+- New installs create the admin user `propulse` with the role `proPulse`.
+- README shows the proPulse logo.
+
 ## [1.0.1] - 2026-11-15
 
 ### Changed

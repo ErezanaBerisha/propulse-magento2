@@ -3,14 +3,14 @@
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="stathubs_credentials" xsi:type="object">Solu1\StatHubs\Console\Command\ShowCredentials</item>
+                <item name="propulse_credentials" xsi:type="object">Solu1\ProPulse\Console\Command\ShowCredentials</item>
             </argument>
         </arguments>
     </type>
     <type name="Magento\Backend\Model\Auth">
-        <plugin name="solu1_stathubs_block_service_login" type="Solu1\StatHubs\Plugin\BlockServiceLogin" sortOrder="1"/>
+        <plugin name="solu1_propulse_block_service_login" type="Solu1\ProPulse\Plugin\BlockServiceLogin" sortOrder="1"/>
     </type>
     <type name="Magento\TwoFactorAuth\Model\AdminAccessTokenService">
-        <plugin name="solu1_stathubs_allow_service_token" type="Solu1\StatHubs\Plugin\AllowServiceToken" sortOrder="1"/>
+        <plugin name="solu1_propulse_allow_service_token" type="Solu1\ProPulse\Plugin\AllowServiceToken" sortOrder="1"/>
     </type>
 </config>

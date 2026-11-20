@@ -1,9 +1,9 @@
 {
-    "name": "stathubs/magento2",
-    "description": "Creates a StatHubs API user for Magento and shows the shop URL, username, password and a QR code.",
+    "name": "propulse/magento2",
+    "description": "Creates a proPulse API user for Magento and shows the shop URL, username, password and a QR code.",
     "type": "magento2-module",
     "license": "GPL-3.0-or-later",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "authors": [
         {
             "name": "Profihost GmbH",
@@ -21,14 +21,14 @@
         "magento/module-user": "*"
     },
     "suggest": {
-        "magento/module-two-factor-auth": "When enabled, the StatHubs API user still gets a REST token; other admins keep two-factor authentication."
+        "magento/module-two-factor-auth": "When enabled, the proPulse API user still gets a REST token; other admins keep two-factor authentication."
     },
     "autoload": {
         "files": [
             "registration.php"
         ],
         "psr-4": {
-            "Solu1\\StatHubs\\": ""
+            "Solu1\\ProPulse\\": ""
         }
     }
 }

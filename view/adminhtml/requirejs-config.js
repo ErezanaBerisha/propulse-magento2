@@ -1,7 +1,7 @@
 var config = {
     shim: {
-        'Solu1_StatHubs/js/qrcode-generator': {
-            exports: 'stathubsQrcode'
+        'Solu1_ProPulse/js/qrcode-generator': {
+            exports: 'propulseQrcode'
         }
     }
 };

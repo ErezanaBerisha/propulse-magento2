@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Solu1\StatHubs\Setup\Patch\Data;
+namespace Solu1\ProPulse\Setup\Patch\Data;
 
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Solu1\StatHubs\Model\CredentialProvisioner;
+use Solu1\ProPulse\Model\CredentialProvisioner;
 
 class ProvisionApiUser implements DataPatchInterface
 {

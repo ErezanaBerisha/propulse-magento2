@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Solu1\StatHubs\Setup;
+namespace Solu1\ProPulse\Setup;
 
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
@@ -19,13 +19,13 @@ class Uninstall implements UninstallInterface
         $username = $connection->fetchOne(
             $connection->select()
                 ->from($configTable, 'value')
-                ->where('path = ?', 'solu1_stathubs/credentials/username')
+                ->where('path = ?', 'solu1_propulse/credentials/username')
                 ->limit(1)
         );
         $roleId = $connection->fetchOne(
             $connection->select()
                 ->from($configTable, 'value')
-                ->where('path = ?', 'solu1_stathubs/credentials/role_id')
+                ->where('path = ?', 'solu1_propulse/credentials/role_id')
                 ->limit(1)
         );
 
@@ -48,7 +48,7 @@ class Uninstall implements UninstallInterface
             $connection->delete($setup->getTable('authorization_role'), ['role_id = ?' => $roleId, 'user_type = ?' => 2]);
         }
 
-        $connection->delete($configTable, ['path LIKE ?' => 'solu1_stathubs/%']);
+        $connection->delete($configTable, ['path LIKE ?' => 'solu1_propulse/%']);
         $setup->endSetup();
     }
 }

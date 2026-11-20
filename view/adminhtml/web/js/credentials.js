@@ -1,4 +1,4 @@
-define(['Solu1_StatHubs/js/qrcode-generator'], function () {
+define(['Solu1_ProPulse/js/qrcode-generator'], function () {
     'use strict';
 
     return function (config) {
@@ -27,7 +27,7 @@ define(['Solu1_StatHubs/js/qrcode-generator'], function () {
             markCopied(button);
         }
 
-        document.querySelectorAll('.stathubs-copy').forEach(function (button) {
+        document.querySelectorAll('.propulse-copy').forEach(function (button) {
             button.addEventListener('click', function () {
                 var id = button.getAttribute('data-target');
                 var input = id ? document.getElementById(id) : null;
@@ -38,8 +38,8 @@ define(['Solu1_StatHubs/js/qrcode-generator'], function () {
             });
         });
 
-        var mount = document.getElementById('stathubs-qr');
-        if (!mount || typeof window.stathubsQrcode !== 'function') {
+        var mount = document.getElementById('propulse-qr');
+        if (!mount || typeof window.propulseQrcode !== 'function') {
             return;
         }
         if (!config.username || !config.password || !config.shopUrl) {
@@ -47,7 +47,7 @@ define(['Solu1_StatHubs/js/qrcode-generator'], function () {
         }
 
         var payload = [config.username, config.password, config.shopUrl, String(config.platformType)].join('|');
-        var code = window.stathubsQrcode(0, 'M');
+        var code = window.propulseQrcode(0, 'M');
         code.addData(payload);
         code.make();
         mount.innerHTML = code.createSvgTag({cellSize: 4, margin: 8});

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Solu1\StatHubs\Block\Adminhtml;
+namespace Solu1\ProPulse\Block\Adminhtml;
 
 use Magento\Backend\Block\Template;
 use Magento\Backend\Block\Template\Context;
-use Solu1\StatHubs\Model\CredentialProvisioner;
+use Solu1\ProPulse\Model\CredentialProvisioner;
 
 class Credentials extends Template
 {

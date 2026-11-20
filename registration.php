@@ -4,4 +4,4 @@ declare(strict_types=1);
 
 use Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Solu1_StatHubs', __DIR__);
+ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Solu1_ProPulse', __DIR__);
